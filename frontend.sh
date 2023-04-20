@@ -7,5 +7,6 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip
 
 # some files need to be created
+#JSR
 
 systemctl restart nginx
