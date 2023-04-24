@@ -22,6 +22,7 @@ npm install
 
 cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
+
 echo -e "\e[36m>>>>>>>>start catalogue service<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable catalogue
