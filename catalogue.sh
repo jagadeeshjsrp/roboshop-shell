@@ -9,6 +9,7 @@ useradd roboshop
 rm -rf /app
 mkdir /app
 
+
 echo -e "\e[33m>>>>>>>>downlaod app content <<<<<\e[0m"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 cd /app
