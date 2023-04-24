@@ -20,6 +20,7 @@ unzip /tmp/catalogue.zip
 echo -e "\e[36m>>>>>>>>install nodeJS dependencies<<<<\e[0m"
 npm install
 
+echo -e "\e[34m>>>>>>>>copy catalogue service file<<<<\e[0m"
 cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 
