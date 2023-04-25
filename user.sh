@@ -19,6 +19,7 @@ unzip /tmp/catalogue.zip
 echo -e "\e[36m>>>>>>>>install nodeJS dependencies<<<<\e[0m"
 npm install
 
+
 echo -e "\e[34m>>>>>>>>copy user service file<<<<\e[0m"
 cp /root/roboshop-shell/user.service /etc/systemd/system/user.service
 
