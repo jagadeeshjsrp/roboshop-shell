@@ -10,7 +10,7 @@ rm -rf /app
 mkdir /app
 
 echo -e "\e[31m>>>>>>>>download app contenet <<<<<\e[0m"
-curl -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip
+curl -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip
 cd /app
 
 echo -e "\e[36m>>>>>>>>unzip app content <<<<<\e[0m"
