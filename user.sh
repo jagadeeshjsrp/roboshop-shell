@@ -14,7 +14,7 @@ curl -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip
 cd /app
 
 echo -e "\e[35m>>>>>>>>unzip app content <<<<<\e[0m"
-unzip /tmp/catalogue.zip
+unzip /tmp/user.zip
 
 echo -e "\e[36m>>>>>>>>install nodeJS dependencies<<<<\e[0m"
 npm install
