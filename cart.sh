@@ -4,4 +4,4 @@ source ${script_path}/common.sh
 
 component=cart
 
-funct_nodejs
+func_nodejs

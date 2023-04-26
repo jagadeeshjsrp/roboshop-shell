@@ -2,7 +2,7 @@ app_user=roboshop
 
 
 
-funct_nodejs() {
+func_nodejs() {
 
   echo -e "\e[36m>>>>>>>>configure nodeJS repos <<<<<\e[0m"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
