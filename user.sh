@@ -31,6 +31,7 @@ systemctl start user
 echo -e "\e[36m>>>>>>>>copy mongodb repo<<<<\e[0m"
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 
+
 echo -e "\e[33m>>>>>>>>install mongodb client<<<<\e[0m"
 yum install mongodb-org-shell -y
 mongo --host mongodb-dev.devjsr99.online </app/schema/user.js
