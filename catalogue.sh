@@ -21,7 +21,7 @@ echo -e "\e[36m>>>>>>>>install nodeJS dependencies<<<<\e[0m"
 npm install
 
 echo -e "\e[34m>>>>>>>>copy catalogue service file<<<<\e[0m"
-cp /root/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 
 echo -e "\e[36m>>>>>>>>start catalogue service<<<<\e[0m"
@@ -30,7 +30,7 @@ systemctl enable catalogue
 systemctl restart catalogue
 
 echo -e "\e[36m>>>>>>>>copy mongodb repo<<<<\e[0m"
-cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[33m>>>>>>>>install mongodb client<<<<\e[0m"
 yum install mongodb-org-shell -y
