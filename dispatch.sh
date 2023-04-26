@@ -17,7 +17,7 @@ go mod init dispatch
 go get
 go build
 
-cp /home/centos/roboshop-shell/dispatch.service /etc/systemd/system/dispatch.service
+cp ${script_path}/dispatch.service /etc/systemd/system/dispatch.service
 echo -e "\e[36m>>>>>>>>start dispatch service<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable dispatch
