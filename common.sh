@@ -44,7 +44,7 @@ fi
 
 func_app_prereq() {
    func_print_head "create app user"
-    useradd ${app_user} &>/tmp/roboshop.log
+    useradd ${app_user} &>>/tmp/roboshop.log
     func_stat_check $?
 
     func_print_head "create app Directory"
@@ -94,7 +94,7 @@ func_nodejs() {
 }
 func_java() {
   func_print_head "install maven"
-  yum install maven -y  >/tmp/roboshop.log
+  yum install maven -y  &>>/tmp/roboshop.log
   func_stat_check $?
   func_app_prereq
 
