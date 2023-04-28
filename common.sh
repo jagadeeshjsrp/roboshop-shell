@@ -67,7 +67,6 @@ func_app_prereq() {
     cd /app
     unzip /tmp/${component}.zip  &>>$log_file
     func_stat_check $?
-
 }
 
 func_systemd_setup() {
