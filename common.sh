@@ -86,6 +86,7 @@ func_java() {
       echo -e "\e[32mSUCCES\e[0m"
     else
       echo -e "\e[32mFAILURE\e[0m"
+      exit 1
   fi
   mv target/${component}-1.0.jar ${component}.jar
 
