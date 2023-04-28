@@ -44,6 +44,7 @@ fi
 func_app_prereq() {
    func_print_head "create app user"
     useradd ${app_user}
+    func_stat_check $?
 
     func_print_head "create app Directory"
     rm -rf /app
