@@ -24,7 +24,7 @@ if  [ "${schema_setup}" == "mysql" ]; then
   yum install mysql -y
 
   func_print_head "load schema"
-  mysql -h mysql-dev.devjsr99.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
+  mysql -h mysql-dev.devjsr99.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql
 
 fi
 }
