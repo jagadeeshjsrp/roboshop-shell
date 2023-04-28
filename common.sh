@@ -71,7 +71,7 @@ func_app_prereq() {
 
 func_systemd_setup() {
    func_print_head "setup systemD service"
-    cp ${script_path}/${component}.service /etc/systemd/system/{component}.service
+    cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
     func_stat_check $?
 
     func_print_head "start shipping service"
