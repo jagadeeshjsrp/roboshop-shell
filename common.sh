@@ -1,6 +1,7 @@
 app_user=roboshop
 script=$(realpath "$0")
 script_path=$(dirname "$script")
+log_file=/tmp/roboshop.log
 
 func_print_head() {
   echo -e "\e[35m>>>>>>>> $1 <<<<<<<<\e[0m"
@@ -18,12 +19,12 @@ func_stat_check() {
 func_schema_setup() {
 if [ "$schema_setup" == "mango" ]; then
   func_print_head "copy mongodb repo"
-  cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
+  cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
   func_stat_check $?
 
 
   func_print_head "install mongodb client"
-  yum install mongodb-org-shell -y
+  yum install mongodb-org-shell -y &>>$log_file
   func_stat_check $?
 
   func_print_head "load schema"
@@ -33,7 +34,7 @@ fi
 if  [ "${schema_setup}" == "mysql" ]; then
 
   func_print_head "install mysql client"
-  yum install mysql -y
+  yum install mysql -y &>>$log_file
   func_stat_check $?
 
   func_print_head "load schema"
@@ -44,21 +45,21 @@ fi
 
 func_app_prereq() {
    func_print_head "create app user"
-    useradd ${app_user} &>>/tmp/roboshop.log
+    useradd ${app_user} &>>$log_file
     func_stat_check $?
 
     func_print_head "create app Directory"
-    rm -rf /app
-    mkdir /app
+    rm -rf /app &>>$log_file
+    mkdir /app &>>$log_file
     func_stat_check $?
 
     func_print_head "download application content"
-    curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/{component}.zip
+    curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/{component}.zip &>>$log_file
     func_stat_check $?
 
     func_print_head "extract app content"
     cd /app
-    unzip /tmp/${component}.zip
+    unzip /tmp/${component}.zip &>>$log_file
     func_stat_check $?
 
 }
@@ -69,24 +70,24 @@ func_systemd_setup() {
     func_stat_check $?
 
     func_print_head "start shipping service"
-    systemctl daemon-reload
-    systemctl enable ${component}
-    systemctl restart ${component}
+    systemctl daemon-reload &>>$log_file
+    systemctl enable ${component} &>>$log_file
+    systemctl restart ${component} &>>$log_file
     func_stat_check $?
 }
 func_nodejs() {
   func_print_head "configure nodeJS repos"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
   func_stat_check $?
 
   func_print_head "install nodeJS"
-  yum install nodejs -y
+  yum install nodejs -y &>>$log_file
   func_stat_check $?
 
   func_app_prereq
 
   func_print_head "install nodeJS dependencies"
-  npm install
+  npm install &>>$log_file
   func_stat_check $?
 
   func_schema_setup
@@ -94,14 +95,14 @@ func_nodejs() {
 }
 func_java() {
   func_print_head "install maven"
-  yum install maven -y  &>>/tmp/roboshop.log
+  yum install maven -y  &>>$log_file
   func_stat_check $?
   func_app_prereq
 
   func_print_head "download maven dependencies"
-  mvn clean package
+  mvn clean package &>>$log_file
   func_stat_check $?
-  mv target/${component}-1.0.jar ${component}.jar
+  mv target/${component}-1.0.jar ${component}.jar &>>$log_file
 
   func_schema_setup
   func_systemd_setup
