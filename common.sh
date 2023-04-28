@@ -74,7 +74,7 @@ func_java() {
   func_print_head "install maven"
   yum install maven -y
   if [ $? -eq 0 ]; then
-    echo "\e[32mSUCCES\e[0m"
+    echo -e "\e[32mSUCCES\e[0m"
   else
     echo -e "\e[32mFAILURE\e[0m"
   fi
@@ -83,7 +83,7 @@ func_java() {
   func_print_head "download maven dependencies"
   mvn clean package
   if [ $? -eq 0 ]; then
-      echo "\e[32mSUCCES\e[0m"
+      echo -e "\e[32mSUCCES\e[0m"
     else
       echo -e "\e[32mFAILURE\e[0m"
   fi
