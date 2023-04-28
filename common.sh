@@ -73,11 +73,20 @@ func_nodejs() {
 func_java() {
   func_print_head "install maven"
   yum install maven -y
-
+  if [ $? -eq 0 ]; then
+    echo "\e[32mSUCCES\e[0m"
+  else
+    echo -e "\e[32mFAILURE\e[0m"
+  fi
   func_app_prereq
 
   func_print_head "download maven dependencies"
   mvn clean package
+  if [ $? -eq 0 ]; then
+      echo "\e[32mSUCCES\e[0m"
+    else
+      echo -e "\e[32mFAILURE\e[0m"
+  fi
   mv target/${component}-1.0.jar ${component}.jar
 
   func_schema_setup
