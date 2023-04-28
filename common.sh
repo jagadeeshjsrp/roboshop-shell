@@ -7,7 +7,7 @@ print_head() {
 }
 
 schema_setup() {
-if [ "$schema_setup" == "mango"]; then
+if [ "$schema_setup" == "mango" ]; then
   print_head "copy mongodb repo"
   cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
