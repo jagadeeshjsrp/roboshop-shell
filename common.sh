@@ -11,6 +11,7 @@ func_stat_check() {
         echo -e "\e[32mSUCCES\e[0m"
   else
         echo -e "\e[32mFAILURE\e[0m"
+        echo "Refer the log file /tmp/roboshop.log for more information"
         exit 1
   fi
 }
@@ -43,7 +44,7 @@ fi
 
 func_app_prereq() {
    func_print_head "create app user"
-    useradd ${app_user}
+    useradd ${app_user} >/tmp/roboshop.log
     func_stat_check $?
 
     func_print_head "create app Directory"
