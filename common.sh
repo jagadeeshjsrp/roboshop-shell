@@ -16,7 +16,7 @@ if [ "$schema_setup" == "mango" ]; then
   yum install mongodb-org-shell -y
 
   print_head "load schema"
-  mongo --host mongodb-dev.devjsr99.online </app/schema/user.js
+  mongo --host mongodb-dev.devjsr99.online </app/schema/${component}.js
 fi
 }
 
