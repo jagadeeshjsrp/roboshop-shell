@@ -25,7 +25,7 @@ yum install erlang -y &>>$log_file
 func_stat_check $?
 
 func_print_head "install rabbitmq"
-yum install rabbitmq-server -y
+yum install rabbitmq-server -y &>>$log_file
 func_stat_check $?
 
 func_print_head "start rabbitmq service"
