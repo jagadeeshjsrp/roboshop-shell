@@ -8,19 +8,28 @@ if [ -z "$rabbitmq_appuser_password" ]; then
   exit
 fi
 
-echo -e "\e[36m>>>>>>>>setup erlang repos<<<<<\e[0m"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+func_print_head "Setup MangoDb repo"
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>setup rabbitmq repos <<<<<\e[0m"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+func_print_head "setup erlang repos"
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>install rabbitmq & erlang <<<<<\e[0m"
-yum install erlang rabbitmq-server -y
+func_print_head "setup rabbitmq repos"
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>start rabbitmq service <<<<<\e[0m"
-systemctl enable rabbitmq-server
-systemctl start rabbitmq-server
+func_print_head "install rabbitmq & erlang"
+yum install erlang rabbitmq-server -y &>>$log_file
+func_stat_check $?
 
-echo -e "\e[36m>>>>>>>>add application user in rabbitmq<<<<<\e[0m"
-rabbitmqctl add_user roboshop ${rabbitmq_appuser_password}
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+func_print_head "start rabbitmq service"
+systemctl enable rabbitmq-server &>>$log_file
+systemctl start rabbitmq-server &>>$log_file
+func_stat_check $?
+
+func_print_head "add application user in rabbitmq"
+rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
+func_stat_check $?
